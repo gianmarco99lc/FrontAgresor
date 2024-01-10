@@ -1,0 +1,386 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.Sidebar {
+    height: 100%;
+    width: 220px;
+    background-color: #2f4050;
+}
+
+.SidebarList {
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.SidebarList .row{
+    width: 100%;
+    height: 60px;
+    list-style-type: none;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.SidebarList .row:hover {
+    cursor: pointer;
+    background-color: #293846;
+}
+
+.SidebarList #active {
+    background-color: #293846;
+}
+
+.row #icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.row #title {
+    flex: 70%;
+}
+
+/*USUARIOS*/
+
+.contenedor-usuarios {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 220px);
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 1px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.titulo {
+    order: 1;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.tabla-usuarios {
+    order: 2;
+    width: 780px;
+    height: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background-color: #fff;
+  }
+  
+  .tabla-usuarios th, .tabla-usuarios td {
+    border: 1px solid #2f4050;
+    padding: 14px;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 12px;
+  }
+  
+  .tabla-usuarios th {
+    background-color: #2f4050;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+  }
+
+/* Establecer anchos para cada columna en porcentaje */
+.tabla-usuarios th:nth-child(1),
+.tabla-usuarios td:nth-child(1) {
+  width: 20%; /* Ajusta según sea necesario */
+}
+
+.tabla-usuarios th:nth-child(2),
+.tabla-usuarios td:nth-child(2) {
+  width: 40%; /* Ajusta según sea necesario */
+}
+
+.tabla-usuarios th:nth-child(3),
+.tabla-usuarios td:nth-child(3) {
+  width: 20%; /* Ajusta según sea necesario */
+}
+
+/* Ajuste adicional para la columna de acciones si es necesario */
+.tabla-usuarios td:last-child,
+.tabla-usuarios th:last-child {
+  width: 20%; /* Ajusta según sea necesario */
+}
+
+  .mapa{
+    width: 50%;
+    height: 50%;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow: auto;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 10px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .modal-content input {
+    width: 85%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal-content button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+
+  .cancelar-button {
+    background-color: red;
+    color: white;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Agregamos un margen superior para separar los botones del contenido */
+  }
+ 
+  .edit-button {
+    /* Tamaño y forma del botón */
+    width: 60px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+  
+    /* Color y texto del botón */
+    background-color: #4CAF50;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+  
+    /* Efectos al pasar el cursor o hacer clic */
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+  }
+  
+  .edit-button:hover {
+    /* Cambiar el color de fondo al pasar el cursor */
+    background-color: #45a049;
+  }
+
+  /*SENTENCIAS*/
+
+  .contenedor-sentencias{
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 250px);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 1px;
+  }
+
+  .tabla-sentencias{
+        order: 2;
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+        background-color: #fff;
+  }
+
+  .tabla-sentencias th, .tabla-sentencias td {
+    border: 1px solid #2f4050;
+    padding: 14px;
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: small;
+  }
+  
+  .tabla-sentencias th {
+    background-color: #2f4050;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+  }
+
+  /* ADMINS */
+
+  
+.tabla-admins {
+  order: 2;
+  width: 780px;
+  height: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background-color: #fff;
+}
+
+.tabla-admins th, .tabla-admins td {
+  border: 1px solid #2f4050;
+  padding: 14px;
+  text-align: left;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 12px;
+}
+
+.tabla-admins th {
+  background-color: #2f4050;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+}
+
+/* Establecer anchos para cada columna en porcentaje */
+.tabla-admins th:nth-child(1),
+.tabla-admins td:nth-child(1) {
+width: 20%; /* Ajusta según sea necesario */
+}
+
+.tabla-admins th:nth-child(2),
+.tabla-admins td:nth-child(2) {
+width: 40%; /* Ajusta según sea necesario */
+}
+
+.tabla-admins th:nth-child(3),
+.tabla-admins td:nth-child(3) {
+width: 20%; /* Ajusta según sea necesario */
+}
+
+/* Ajuste adicional para la columna de acciones si es necesario */
+.tabla-admins td:last-child,
+.tabla-admins th:last-child {
+width: 20%; /* Ajusta según sea necesario */
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 1px; /* Agrega un pequeño espacio superior para separar el mensaje del campo de entrada */
+  margin-bottom: 6px;
+}
+
+.contenedor{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: space-between;
+}
+
+.table-container {
+  margin-top: 8px;
+  max-height: 150px; /* Ajusta el valor según sea necesario */
+  overflow-y: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%; /* Cambiado a 50% */
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgba(3, 3, 3, 0.749);
+}
+
+label {
+  display: block;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+}
+
+button {
+  width: 25%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #db0909;
+  color: white;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: large;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
