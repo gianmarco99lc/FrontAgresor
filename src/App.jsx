@@ -1,18 +1,28 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthContext } from './contexts/auth/auth.context';
+import { AuthenticatedRoutes } from './routes/authenticated';
+import { NotAuthenticatedRoutes } from './routes/not-authenticated';
 import "./App.css";
 
 const App = () => {
+
+  const { authState } = useContext(AuthContext);
+
+  let Routes = NotAuthenticatedRoutes;
+
+  switch(authState.isAuthenticated) {
+    case true:
+      Routes = AuthenticatedRoutes;
+  }
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </div>
   );
-};
+}
 
 export default App;
