@@ -3,7 +3,8 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const Home = () => {
   const [currentPosition, setCurrentPosition] = useState(null);
-
+  const [clickedPosition, setClickedPosition] = useState(null);
+  const [distance, setDistance] = useState(null);
 
   const containerStyle = {
     width: "100%",
@@ -35,6 +36,29 @@ const Home = () => {
     getCurrentLocation();
   }, []); // La dependencia vacía asegura que se ejecute solo una vez al montar el componente
 
+  const handleMapClick = (event) => {
+    setClickedPosition({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    });
+  };
+
+  useEffect(() => {
+    const calculateDistance = () => {
+      if (window.google && window.google.maps && window.google.maps.geometry) {
+        console.log('Distance:');
+        const distanceInMeters = window.google.maps.geometry.computeDistanceBetween(
+          new window.google.maps.LatLng(currentPosition),
+          new window.google.maps.LatLng(clickedPosition)
+        );
+        console.log('Distance:');
+        setDistance(distanceInMeters);
+      }
+    };
+  
+    calculateDistance();
+  }, [currentPosition, clickedPosition]);
+
   return (
     <div>
       <h1>Eres el agresor!</h1>
@@ -45,14 +69,27 @@ const Home = () => {
             mapContainerStyle={containerStyle}
             center={currentPosition || { lat: 10.465, lng: -66.976 }}
             zoom={12}
+            onClick={handleMapClick}
           >
-            {/* Puedes agregar un marcador si lo deseas */}
+            {/* Marcador de posición actual */}
             {currentPosition && <Marker position={currentPosition} />}
+
+            {/* Marcador al hacer clic */}
+            {clickedPosition && <Marker position={clickedPosition} />}
           </GoogleMap>
         </LoadScript>
       </div>
+
+      {/* Mostrar distancia en metros */}
+      {distance && (
+        <input
+          type="text"
+          value={`Distancia: ${distance.toFixed(2)} metros`}
+          readOnly
+        />
+      )}
     </div>
   );
-}
+};
 
 export default Home;
