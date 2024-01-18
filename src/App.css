@@ -34,6 +34,18 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+}
+
 .SidebarList .row:hover {
     cursor: pointer;
     background-color: #293846;
@@ -80,7 +92,7 @@ body {
     margin-top: 25px;
     background-color: #fff;
   }
-  
+
   .tabla-usuarios th, .tabla-usuarios td {
     border: 1px solid #2f4050;
     padding: 14px;
@@ -88,7 +100,7 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 12px;
   }
-  
+
   .tabla-usuarios th {
     background-color: #2f4050;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -133,7 +145,7 @@ body {
     align-items: center;
     justify-content: center;
   }
-  
+
   .modal-content {
     background-color: #fff;
     padding: 20px;
@@ -144,16 +156,16 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     overflow: auto;
   }
-  
+
   .modal-content h2 {
     margin-bottom: 10px;
   }
-  
+
   .modal-content label {
     display: block;
     margin-bottom: 5px;
   }
-  
+
   .modal-content input {
     width: 85%;
     padding: 8px;
@@ -161,7 +173,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
+
   .modal-content button {
     background-color: #007bff;
     color: #fff;
@@ -171,7 +183,7 @@ body {
     cursor: pointer;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
-  
+
   .modal-content button:hover {
     background-color: #0056b3;
   }
@@ -180,33 +192,33 @@ body {
     background-color: red;
     color: white;
   }
-  
+
   .modal-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 20px; /* Agregamos un margen superior para separar los botones del contenido */
   }
- 
+
   .edit-button {
     /* Tamaño y forma del botón */
     width: 60px;
     height: 25px;
     border: none;
     border-radius: 10px;
-  
+
     /* Color y texto del botón */
     background-color: #4CAF50;
     color: white;
     font-size: 12px;
     text-align: center;
     text-decoration: none;
-  
+
     /* Efectos al pasar el cursor o hacer clic */
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transition: 0.3s;
   }
-  
+
   .edit-button:hover {
     /* Cambiar el color de fondo al pasar el cursor */
     background-color: #45a049;
@@ -242,7 +254,7 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: small;
   }
-  
+
   .tabla-sentencias th {
     background-color: #2f4050;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -251,7 +263,7 @@ body {
 
   /* ADMINS */
 
-  
+
 .tabla-admins {
   order: 2;
   width: 780px;
@@ -327,16 +339,23 @@ width: 20%; /* Ajusta según sea necesario */
   padding: 8px;
   text-align: left;
 }
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .login {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 50%; /* Cambiado a 50% */
+  width: 100vw; /* Cambiado a 50% */
+  height: 100vh;
   margin: 0 auto;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-size: cover;
   background-position: center;
   padding: 20px;

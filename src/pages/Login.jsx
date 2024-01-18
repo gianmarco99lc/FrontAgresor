@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, CircularProgress } from "@mui/material";
 import { AuthContext } from '../contexts/auth/auth.context';
-import axios from 'axios';
+import axios from "axios";
 
 const Login = () => {
 
@@ -12,7 +12,7 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const Login = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get(`http://localhost:8080/cmcapp-backend-1.0/api/v1/usuarios/username/${form.username}`);
+      const response = await axios.get(`api/usuarios/username/${form.username}`);
 
       const user = response.data.response;
       console.log(response.data);
@@ -29,7 +29,7 @@ const Login = () => {
       if (form.username === user._Username && form.password === user._Password && user.usuarioTypeDto.id === 1){
         setAuthentication({type: "authenticate", payload: user});
       }
-        
+
       else
         alert("Credenciales incorrectas");
 
@@ -48,8 +48,8 @@ const Login = () => {
 
   return (
     <div className="login">
-      <h1>Login</h1>
       <form className="form-content" onSubmit={handleLogin}>
+        <h1>Login</h1>
         <TextField
           name="username"
           label="Username"
@@ -68,7 +68,7 @@ const Login = () => {
         />
           {
             isLoading ? <CircularProgress /> :
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" style={{width: "100%"}}>
               Ingresar
             </Button>
           }

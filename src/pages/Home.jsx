@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
+import { AuthContext } from '../contexts/auth/auth.context';
 
 const Home = () => {
+
+  const { authState, setAuthentication } = useContext(AuthContext);
   const [currentPosition, setCurrentPosition] = useState(null);
   const [clickedPosition, setClickedPosition] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [isLoginOut, setIsLoginOut] = useState(false);
+  const { userInfo } = authState;
 
   const containerStyle = {
     width: "100%",
@@ -15,7 +21,16 @@ const Home = () => {
     justifyContent: "center",
   };
 
-    useEffect(() => {
+  const handleSalir = (e) => {
+    e.preventDefault();
+    setIsLoginOut(true);
+
+    setTimeout(() => {
+      setAuthentication({ type: "unauthenticate" });
+    }, 2000);
+  };
+
+  useEffect(() => {
     const postearPosicion = async () => {
       console.log("ACTUAL POSICION", currentPosition);
       try {
@@ -23,7 +38,10 @@ const Home = () => {
           _fecha: new Date(),
           _estadoConexion: true,
           _latitud: currentPosition.lat,
-          _longitud: currentPosition.lng
+          _longitud: currentPosition.lng,
+          _usuario: {
+            id: userInfo.id
+          }
         }, {
           headers: {
             "Content-Type": "application/json"
@@ -81,40 +99,52 @@ const Home = () => {
         setDistance(distanceInMeters);
       }
     };
-  
+
     calculateDistance();
   }, [currentPosition, clickedPosition]);
 
   return (
-    <div>
-      <h1>Eres el agresor!</h1>
-      <div style={{ height: '400px' }}>
-        {/* Mapa */}
-        <LoadScript googleMapsApiKey="AIzaSyBcVP__otz3wxYvWgx_LUJp0DOJSDKhDV4">
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={currentPosition || { lat: 10.465, lng: -66.976 }}
-            zoom={12}
-            onClick={handleMapClick}
-          >
-            {/* Marcador de posición actual */}
-            {currentPosition && <Marker position={currentPosition} />}
+    <div className="home">
+      {
+        isLoginOut ?
+        <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+          <CircularProgress />
+          Saliendo
+        </div>:
+        <>
+          <h1>{authState.userInfo._Nombre} es el agresor</h1>
+          <div style={{ height: '80%', width: "80%"}}>
+            {/* Mapa */}
+            <LoadScript googleMapsApiKey="AIzaSyBcVP__otz3wxYvWgx_LUJp0DOJSDKhDV4">
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={currentPosition || { lat: 10.465, lng: -66.976 }}
+                zoom={12}
+                onClick={handleMapClick}
+              >
+                {/* Marcador de posición actual */}
+                {currentPosition && <Marker position={currentPosition} />}
 
-            {/* Marcador al hacer clic */}
-            {clickedPosition && <Marker position={clickedPosition} />}
-          </GoogleMap>
-        </LoadScript>
+                {/* Marcador al hacer clic */}
+                {/* {clickedPosition && <Marker position={clickedPosition} />} */}
+              </GoogleMap>
+            </LoadScript>
+          </div>
+
+          {/* Mostrar distancia en metros */}
+          {distance && (
+            <input
+              type="text"
+              value={`Distancia: ${distance.toFixed(2)} metros`}
+              readOnly
+            />
+          )}
+          <button type="button" onClick={handleSalir} style={{width: "300px", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            Salir
+          </button>
+        </>
+      }
       </div>
-
-      {/* Mostrar distancia en metros */}
-      {distance && (
-        <input
-          type="text"
-          value={`Distancia: ${distance.toFixed(2)} metros`}
-          readOnly
-        />
-      )}
-    </div>
   );
 };
 
