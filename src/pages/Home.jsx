@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import axios from "axios";
 
 const Home = () => {
   const [currentPosition, setCurrentPosition] = useState(null);
@@ -13,6 +14,31 @@ const Home = () => {
     alignItems: "center",
     justifyContent: "center",
   };
+
+    useEffect(() => {
+    const postearPosicion = async () => {
+      console.log("ACTUAL POSICION", currentPosition);
+      try {
+        const response = await axios.post("/api/conexion", {
+          _fecha: new Date(),
+          _estadoConexion: true,
+          _latitud: currentPosition.lat,
+          _longitud: currentPosition.lng
+        }, {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        console.log("RESPUESTA MANO", response);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+
+    if (currentPosition !== null)
+      postearPosicion();
+
+  }, [currentPosition]);
 
   useEffect(() => {
     // Función para obtener la posición actual del usuario
