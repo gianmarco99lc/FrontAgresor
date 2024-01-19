@@ -34,7 +34,7 @@ const Home = () => {
     const postearPosicion = async () => {
       console.log("ACTUAL POSICION", currentPosition);
       try {
-        const response = await axios.post("/api/conexion", {
+        const response = await axios.post("/${import.meta.env.VITE_APP_SERVER_URL}/conexion", {
           _fecha: new Date(),
           _estadoConexion: true,
           _latitud: currentPosition.lat,

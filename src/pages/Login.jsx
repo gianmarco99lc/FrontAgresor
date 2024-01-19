@@ -20,7 +20,7 @@ const Login = () => {
     try {
       setIsLoading(true);
 
-      const response = await axios.get(`api/usuarios/username/${form.username}`);
+      const response = await axios.get(`${import.meta.env.VITE_APP_SERVER_URL}/usuarios/username/${form.username}`);
 
       const user = response.data.response;
       console.log(response.data);
